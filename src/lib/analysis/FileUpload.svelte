@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { DemoPacket } from '@mixednuts/demo';
 	import { DemoAnalyzer, type DemoAnalysis as DemoAnalysisData } from './index';
 	import DemoAnalysis from './DemoAnalysis.svelte';
 

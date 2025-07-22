@@ -46,6 +46,6 @@
 		"vitest-browser-svelte": "^1.0.0"
 	},
 	"dependencies": {
-		"@mixednuts/demo": "file:../demo"
+		"@mixednuts/demo": "npm:@jsr/mixednuts__demo"
 	}
 }

@@ -1,7 +1,6 @@
-import { BroadcastChunk, BroadcastFragment, DemoPacket, Registry } from '@mixednuts/demo';
+import { BroadcastChunk, BroadcastFragment, Registry } from '@mixednuts/demo';
 import { BitBuffer } from '@mixednuts/demo/buffers';
-import { EDemoCommands } from '@mixednuts/demo/gen/demo_pb';
-import { NET_Messages } from '@mixednuts/demo/gen/networkbasetypes_pb';
+import { Demo, NetworkBaseTypes } from '@mixednuts/demo/gen';
 
 // Data Models
 export interface ChunkAnalysis {
@@ -118,7 +117,7 @@ export class DemoAnalyzer {
 		const bitbuffer = BitBuffer.from(data);
 		let packetIndex = 0;
 
-		if (command === EDemoCommands.DEM_SpawnGroups) {
+		if (command === Demo.EDemoCommands.DEM_SpawnGroups) {
 			const sequence = bitbuffer.read_uvarbit();
 		}
 
@@ -150,7 +149,7 @@ export class DemoAnalyzer {
 				packet.typeName = this.resolveMessageTypeName(packet.type);
 
 				// Check for NOP
-				if (packet.type === NET_Messages.net_NOP) {
+				if (packet.type === NetworkBaseTypes.NET_Messages.net_NOP) {
 					packet.success = true;
 					packet.remainingBytesAfter = bitbuffer.remaining_bytes();
 					packets.push(packet);
@@ -220,12 +219,12 @@ export class DemoAnalyzer {
 		const chunkStartTime = performance.now();
 
 		const { command, isCompressed } = chunk.header();
-		const rawCommand = command | (isCompressed ? EDemoCommands.DEM_IsCompressed : 0);
+		const rawCommand = command | (isCompressed ? Demo.EDemoCommands.DEM_IsCompressed : 0);
 
 		const analysis: ChunkAnalysis = {
 			index,
 			command,
-			commandName: EDemoCommands[command] || 'unknown',
+			commandName: Demo.EDemoCommands[command] || 'unknown',
 			size: chunk.size,
 			isCompressed,
 			rawCommand,
@@ -253,10 +252,10 @@ export class DemoAnalyzer {
 
 		// Determine analysis type based on chunk command
 		const networkPacketChunks = [
-			EDemoCommands.DEM_Packet,
-			EDemoCommands.DEM_SignonPacket,
-			EDemoCommands.DEM_FullPacket,
-			EDemoCommands.DEM_SpawnGroups
+			Demo.EDemoCommands.DEM_Packet,
+			Demo.EDemoCommands.DEM_SignonPacket,
+			Demo.EDemoCommands.DEM_FullPacket,
+			Demo.EDemoCommands.DEM_SpawnGroups
 		];
 
 		if (networkPacketChunks.includes(chunk.command)) {
