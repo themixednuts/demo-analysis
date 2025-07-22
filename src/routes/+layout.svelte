@@ -4,4 +4,9 @@
 	let { children } = $props();
 </script>
 
-{@render children()}
+<svelte:boundary>
+	{#snippet pending()}
+		<p>loading...</p>
+	{/snippet}
+	{@render children()}
+</svelte:boundary>
