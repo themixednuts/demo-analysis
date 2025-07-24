@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { BroadcastChunk, BroadcastReader } from '@mixednuts/demo';
-	import type { PageProps } from './$types';
-	const { params }: PageProps = $props();
 
-	const url = $derived(new URL(`/live/${params.id}`));
+	import type { PageProps } from './$types';
+	const { params, data }: PageProps = $props();
+
+	const url = $derived(new URL(`${data.origin}/live/${params.id}`));
 
 	$inspect(url);
 
