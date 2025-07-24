@@ -345,6 +345,7 @@
 						</h3>
 						<div class="chunk-meta">
 							<span class="size">{chunk.size.toLocaleString()} bytes</span>
+							<span>{chunk.tick}</span>
 							<span class="type">{chunk.analysisType}</span>
 							<span class="parse-time">{chunk.parseTimeMs.toFixed(3)}ms</span>
 							{#if chunk.isCompressed}
@@ -383,7 +384,7 @@
 										Network Packets ({chunk.networkPackets.length})
 									</h4>
 									<div class="packets-grid">
-										{#each chunk.networkPackets as packet}
+										{#each chunk.networkPackets as packet (packet.packetIndex)}
 											<div class="packet" class:packet-error={packet.error}>
 												<div class="packet-header">
 													<strong>Packet {packet.packetIndex}:</strong>
