@@ -2,6 +2,7 @@
 	import { BroadcastChunk, BroadcastReader } from '@mixednuts/demo';
 
 	import type { PageProps } from './$types';
+	import { onMount } from 'svelte';
 	const { params, data }: PageProps = $props();
 
 	const url = $derived(new URL(`${data.origin}/live/${params.id}`));
@@ -14,20 +15,20 @@
 	const stream = $derived(reader.stream({}));
 	$inspect(stream);
 
-	// let chunks: Readonly<BroadcastChunk>[] = $derived(await Array.fromAsync(stream));
+	let chunks: Readonly<{ fragment: number; chunk: BroadcastChunk }>[] = $state([]);
 
-	// async function stream() {
-	// 	chunks.length = 0;
-	// 	for await (const chunk of reader.stream()) {
-	// 		chunks.push(chunk);
-	// 	}
-	// }
-
-	// $effect(() => {
-	// 	if (reader) {
-	// 		console.log();
-	// 		console.log(reader);
-	// 		stream();
-	// 	}
-	// });
+	onMount(() => {
+		(async () => {
+			chunks.length = 0;
+			for await (const chunk of reader.stream({})) {
+				chunks.push(chunk);
+			}
+		})();
+	});
 </script>
+
+<div>
+	{#each chunks as { fragment, chunk }}
+		{fragment}: {chunk.size} bytes
+	{/each}
+</div>

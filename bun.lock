@@ -142,7 +142,7 @@
 
     "@mapbox/node-pre-gyp": ["@mapbox/node-pre-gyp@2.0.0", "", { "dependencies": { "consola": "^3.2.3", "detect-libc": "^2.0.0", "https-proxy-agent": "^7.0.5", "node-fetch": "^2.6.7", "nopt": "^8.0.0", "semver": "^7.5.3", "tar": "^7.4.0" }, "bin": { "node-pre-gyp": "bin/node-pre-gyp" } }, "sha512-llMXd39jtP0HpQLVI37Bf1m2ADlEb35GYSh1SDSLsBhR+5iCxiNGlT31yqbNtVHygHAtMy6dWFERpU2JgufhPg=="],
 
-    "@mixednuts/demo": ["@jsr/mixednuts__demo@0.1.3", "https://npm.jsr.io/~/11/@jsr/mixednuts__demo/0.1.3.tgz", { "dependencies": { "@bufbuild/protobuf": "^2.6.1" } }, "sha512-02RZ0S0VNuSPVitatK1PEMrD3x9Yex5/qgRMiTleM2AsPRPvrf1TYGyfvRohrlDwQGmPr4LGghns9KsYhT1wEQ=="],
+    "@mixednuts/demo": ["@jsr/mixednuts__demo@0.1.4", "https://npm.jsr.io/~/11/@jsr/mixednuts__demo/0.1.4.tgz", { "dependencies": { "@bufbuild/protobuf": "^2.6.1" } }, "sha512-mdc8RerkJ7X8IxvPzn+n2pibIg7Kiv6tDJLhk+PDEVndnrJoUGQs75cpafPwmLd3RuaCVlytG+63X0dJkO0gWg=="],
 
     "@nodelib/fs.scandir": ["@nodelib/fs.scandir@2.1.5", "", { "dependencies": { "@nodelib/fs.stat": "2.0.5", "run-parallel": "^1.1.9" } }, "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g=="],
 
