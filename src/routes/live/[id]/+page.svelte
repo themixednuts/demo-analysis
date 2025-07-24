@@ -1,19 +1,19 @@
 <script lang="ts">
-	import { page } from '$app/state';
 	import { BroadcastChunk, BroadcastReader } from '@mixednuts/demo';
+	import type { PageProps } from './$types';
+	const { params }: PageProps = $props();
 
-	const id = $derived(page.url.searchParams.get('id'));
-	$inspect(id);
-	const url = $derived(`https://dist1-ord1.steamcontent.com/tv/${id}`);
+	const url = $derived(new URL(`/live/${params.id}`));
+
 	$inspect(url);
 
 	const reader = $derived(BroadcastReader.new(url));
 	$inspect(reader);
 
-	const stream = $derived(reader.stream());
+	const stream = $derived(reader.stream({}));
 	$inspect(stream);
 
-	let chunks: Readonly<BroadcastChunk>[] = $derived(await Array.fromAsync(stream));
+	// let chunks: Readonly<BroadcastChunk>[] = $derived(await Array.fromAsync(stream));
 
 	// async function stream() {
 	// 	chunks.length = 0;
@@ -30,7 +30,3 @@
 	// 	}
 	// });
 </script>
-
-{#each chunks as chunk}
-	<div>{chunk.tick}</div>
-{/each}
