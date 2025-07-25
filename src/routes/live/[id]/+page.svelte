@@ -5,7 +5,7 @@
 	import { onMount } from 'svelte';
 	const { params, data }: PageProps = $props();
 
-	const url = $derived(new URL(`${data.origin}/live/${params.id}`));
+	const url = $derived(new URL(`${data.origin}/api/live/${params.id}`));
 
 	$inspect(url);
 
