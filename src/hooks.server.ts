@@ -2,7 +2,8 @@ import { error } from '@sveltejs/kit';
 
 export const handle = async ({ event, resolve }) => {
 	const { pathname } = event.url;
-	if (pathname.startsWith('/api/live')) {
+	console.log(pathname);
+	if (!pathname.startsWith('/api/live')) {
 		return resolve(event);
 	}
 
